@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 - Anagram </title>
+</head>
+
+<body>
+
+    <script>
+        alert("Давай поиграем в слова и поищем Анаграмму из 2-х слов!");
+        let userInput_1;
+        let userInput_2;
+        while (userInput_1 !== null && userInput_2 !== null) {
+            userInput_1 = prompt("Введите первое слово");
+            userInput_2 = prompt("Введите второе слово");
+
+            let array1 = userInput_1.toLowerCase().split("");
+            let array2 = userInput_2.toLowerCase().split("");
+
+
+            const checkArray = (arr1, arr2) => {
+                let checkedValue = [];
+                if (arr1.length === arr2.length) {
+
+                    arr1.forEach(element => {
+                        arr2.forEach(point => {
+                            if (element === point) {
+                                checkedValue.push(element);
+                            }
+
+                        });
+
+                    });
+                }
+                else {
+                    console.log("Это НЕ анаграмма!");
+                }
+                return checkedValue;
+            }
+            let checkedInput = checkArray(array1, array2);
+
+            let checkedString = checkedInput.join('');
+            let userInputString = array1.join('');
+
+            if (checkedString === userInputString) {
+                alert("Это Анаграмма!");
+            }
+            else {
+                alert("Это НЕ анаграмма!");
+            }
+        }
+    </script>
+</body>
+
+</html>
