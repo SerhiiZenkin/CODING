@@ -1,102 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Serhii Zenkin">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Serhii Zenkin" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
-        let questionArray = [];
-        let optionArray = [];
-        let answerArray = [];
-        let rewardArray = [];
+          const questionArray = [
+          {
+              question: "Как обратиться ко всем элементам <p> внутри элемента <div>?\nВведи букву правильного ответа без скобки.",
+              option: "а) div.p \n б) div p \n в) div>p \n г) .div p",
+              answer: "б",
+              reward: 100
+          },
+          {
+              question: "Как сделать нумерованный список?\nВведи букву правильного ответа без скобки.",
+              option: "а) <list> \n б) <ul> \n в) <ol> \n г) <li>",
+              answer: "в",
+              reward: 100
+          },
+          {
+              question: "Какая переменная записана неверно?",
+              option: "а) let element = `STRING`; \n б) let number = 13,5; \n в) const b = null; \n г) var isCheched = 0;",
+              answer: "б",
+              reward: 100
+          },
+          {
+              question: "Как вызывается функция с именем «myFunction»?",
+              option: "а) function myFunction() \n б) myFunction() \n в) myFunction()=> \n г) (myFunction)",
+              answer: "б",
+              reward: 100
+          },
+          {
+              question: "Как отображать гиперссылки без подчеркивания?",
+              option: "а) a {text-decoration: no-underline;} \n б) a {underline: none;} \n в) a {text-decoration: none;} \n г) a {decoration: no-underline;}",
+              answer: "в",
+              reward: 100
+          },
+          {
+              question: "Что вернет следующий код: Boolean(5 > 4)?",
+              option: "а) false \n б) NaN \n в) undefined \n г) true",
+              answer: "г",
+              reward: 100
+          },
+          {
+              question: "Какой атрибут HTML используется для определения встроенных стилей?",
+              option: "а) <style> \n б) <id> \n в) <src> \n г) <class>",
+              answer: "а",
+              reward: 100
+          },
+      ];
+          let score = 0;
 
-        const quest1 = {
-            question: "Как обратиться ко всем элементам <p> внутри элемента <div>?\nВведи букву правильного ответа без скобки.",
-            option: "а) div.p \n б) div p \n в) div>p \n г) .div p",
-            answer: "б",
-            reward: 100
-        }
-        const quest2 = {
-            question: "Как сделать нумерованный список?\nВведи букву правильного ответа без скобки.",
-            option: "а) <list> \n б) <ul> \n в) <ol> \n г) <li>",
-            answer: "в",
-            reward: 100
-        }
-        const quest3 = {
-            question: "Какая переменная записана неверно?",
-            option: "а) let element = `STRING`; \n б) let number = 13,5; \n в) const b = null; \n г) var isCheched = 0;",
-            answer: "б",
-            reward: 100
-        }
-        const quest4 = {
-            question: "Как вызывается функция с именем «myFunction»?",
-            option: "а) function myFunction() \n б) myFunction() \n в) myFunction()=> \n г) (myFunction)",
-            answer: "б",
-            reward: 100
-        }
-        const quest5 = {
-            question: "Как отображать гиперссылки без подчеркивания?",
-            option: "а) a {text-decoration: no-underline;} \n б) a {underline: none;} \n в) a {text-decoration: none;} \n г) a {decoration: no-underline;}",
-            answer: "в",
-            reward: 100
-        }
-        const quest6 = {
-            question: "Что вернет следующий код: Boolean(5 > 4)?",
-            option: "а) false \n б) NaN \n в) undefined \n г) true",
-            answer: "г",
-            reward: 100
-        }
-        const quest7 = {
-            question: "Какой атрибут HTML используется для определения встроенных стилей?",
-            option: "а) <style> \n б) <id> \n в) <src> \n г) <class>",
-            answer: "а",
-            reward: 100
-        }
+          alert(`Приветствуем. Давайте поиграем в игру "Как стать миллионером!"\nПравильный ответ дает Вам 100 грн.\nПри неправильном ответе сумма "сгорает".\nВы всегда можете остановить игру - "Отмена" и забрать деньги.`);
+          for (let index = 0; index <= questionArray.length; index++) {
+              let userInput = prompt(`${questionArray[index].question} \n ${questionArray[index].option}`);
 
-        questionArray = [quest1.question, quest2.question, quest3.question, quest4.question, quest5.question, quest6.question, quest7.question];
-        optionArray = [quest1.option, quest2.option, quest3.option, quest4.option, quest5.option, quest6.option, quest7.option];
-        answerArray = [quest1.answer, quest2.answer, quest3.answer, quest4.answer, quest5.answer, quest6.answer, quest7.answer];
-        rewardArray = [quest1.reward, quest2.reward, quest3.reward, quest4.reward, quest5.reward, quest6.reward, quest7.reward];
-        let score = 0;
+              if (questionArray[index].answer == userInput && index !== questionArray.length - 1) {
+                  score += questionArray[index].reward;
+                  let proceed = confirm("Хотите продолжить игру?");
+                  if (proceed) {
+                      continue;
+                  }
+                  else {
+                      alert(`Ваш выиграш в игре составил ${score}!`);
+                      break;
+                  }
+              }
 
-        alert(`Приветствуем. Давайте поиграем в игру "Как стать миллионером!"\nПравильный ответ дает Вам 100 грн.\nПри неправильном ответе сумма "сгорает".\nВы всегда можете остановить игру - "Отмена" и забрать деньги.`);
-        for (let index = 0; index <= questionArray.length; index++) {
-            let userInput = prompt(`${questionArray[index]} \n ${optionArray[index]}`);
+              if (questionArray[index].answer == userInput && index == questionArray.length - 1) {
+                  score += questionArray[index].reward;
+                  alert(`Отлично! Вы ответили на все вопросы. Ваш выиграш в игре составил ${score} грн.!`);
+                  break;
+              }
+              else if (userInput ==="" || userInput === null) {
+                  alert ("Хорошо заканчиваем игру. Может в следующий раз.");
+                  break;
+              }
+              else {
+                  alert(`К сожалению, это НЕправильный ответ!`);
+                  break;
+              }
 
-            if (answerArray[index] == userInput && index !== questionArray.length - 1) {
-                score += rewardArray[index];
-                let proceed = confirm("Хотите продолжить игру?");
-                if (proceed) {
-                    continue;
-                }
-                else {
-                    alert(`Ваш выиграш в игре составил ${score}!`);
-                    break;
-                }
-            }
-
-            if (answerArray[index] == userInput && index == questionArray.length - 1) {
-                score += rewardArray[index];
-                alert(`Отлично! Вы ответили на все вопросы. Ваш выиграш в игре составил ${score} грн.!`);
-                break;
-            }
-            else if (userInput ==="" || userInput === null) {
-                alert ("Хорошо заканчиваем игру. Может в следующий раз.");
-                break;
-            }
-            else {
-                alert(`К сожалению, это НЕправильный ответ!`);
-                break;
-            }
-
-        }
+          }
     </script>
-</body>
-
+  </body>
 </html>
